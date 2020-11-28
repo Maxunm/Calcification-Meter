@@ -88,11 +88,10 @@ void loop()
   
   stepper.setCurrentMilliamps(1500);
   
-
+  setDirection(1);
   // Step in the other direction 1000 times.
-  while(abs(slidePos.read())!=0)
+  while(abs(slidePos.read())>3)
   {
-    setDirection(slidePos.read() >0 ? 1:0);
     step();
   }
   stepper.setCurrentMilliamps(a);
@@ -132,7 +131,7 @@ void setDirection(bool dir)
 
 void output(){
   Serial.print("mm: ");
-  Serial.print((float)slidePos.read()/100.0, DEC);
+  Serial.print((float)slidePos.read()/200.0, DEC);
   Serial.print("\npulses: ");
   Serial.print(slidePos.read(), DEC);
   Serial.print("\n");
