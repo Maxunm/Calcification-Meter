@@ -19,16 +19,16 @@ information about how to connect the driver:
 #include <AMIS30543.h>
 #include <Encoder.h>
 
-const uint8_t amisDirPin = 2;
-const uint8_t amisStepPin = 3;
-const uint8_t amisSlaveSelect = SS;
+const uint8_t amisDirPin = 5;//2;
+const uint8_t amisStepPin = 6;//3;
+const uint8_t amisSlaveSelect = 4;//SS;
 
 AMIS30543 stepper;
 int a = 500;
 int b = 270;
 int usr;
 
-Encoder slidePos(0, 1); //Use pins 0 + 1 as they are both interupt pins.
+Encoder slidePos(2, 3); //Use pins 0 + 1 as they are both interupt pins.
 
 void setup()
 {
@@ -90,7 +90,7 @@ void loop()
   
   setDirection(1);
   // Step in the other direction 1000 times.
-  while(abs(slidePos.read())>3)
+  for (unsigned int x = 0; x < 10000; x++)//while(slidePos.read()>3)
   {
     step();
   }
